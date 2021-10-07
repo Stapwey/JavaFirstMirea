@@ -3,6 +3,7 @@ package ru.mirea.task7.Part1;
 public class Rectangle extends Shape {
     protected double width;
     protected double length;
+
     public Rectangle(){}
     public Rectangle(double width, double length){
         this.width = width;

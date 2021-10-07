@@ -15,7 +15,5 @@ public class Correct {
         Scanner in = new Scanner(System.in);
         int N = in.nextInt();
         Correct(N);
-
-
     }
 }

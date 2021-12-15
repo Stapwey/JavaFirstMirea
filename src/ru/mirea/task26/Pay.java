@@ -39,7 +39,19 @@ class debitCardStrategy implements PayStrategy{
 }
 
 
+class eWalletPayment extends Pay {
+    public eWalletPayment(int order_id) {
+        super(order_id);
+        this.payStrategy = new eWalletStrategy();
+    }
+}
 
+class debitCardPayment extends Pay {
+    public debitCardPayment(int order_id) {
+        super(order_id);
+        this.payStrategy = new debitCardStrategy();
+    }
+}
 public class Pay {
     int order_id;
     PayStrategy payStrategy;
@@ -73,19 +85,5 @@ public class Pay {
             default -> throw new IllegalStateException("Unexpected value!");
         }
         payment.payment();
-    }
-}
-
-class eWalletPayment extends Pay {
-    public eWalletPayment(int order_id) {
-        super(order_id);
-        this.payStrategy = new eWalletStrategy();
-    }
-}
-
-class debitCardPayment extends Pay {
-    public debitCardPayment(int order_id) {
-        super(order_id);
-        this.payStrategy = new debitCardStrategy();
     }
 }

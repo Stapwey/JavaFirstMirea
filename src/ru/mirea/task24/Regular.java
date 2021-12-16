@@ -1,19 +1,55 @@
 package ru.mirea.task24;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOError;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Regular {
-    private static final String POSITIVE_INTEGER_REGEX = "[0-9]+";
-    private static final Pattern POSITIVE_INTEGER_PATTERN = Pattern.compile(POSITIVE_INTEGER_REGEX);
 
-    public static final boolean isPositiveInteger(String s) {
-        return POSITIVE_INTEGER_PATTERN.matcher(s).matches();
-    }
+
+public class Regular {
+
+
+    private static String S;
+    private static boolean bool;
+
+
+    private static final String IPADDRESS_PATTERN =
+            "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+                    "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+                    "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+                    "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
+
+
+
     public static void main(String[] args) {
 
-        String balanceString = "127.0.0.1, 255.255.255.0";
+        Scanner s = new Scanner(System.in);
+        PrintWriter out = new PrintWriter(System.out);
 
-        System.out.println("Совпадения с шаблоном: ");
-        System.out.println(isPositiveInteger(balanceString));
+
+        S=s.next();
+        bool= validate(S);
+        if(bool==true) {
+            System.out.println("Строка является IP адресом");
+        }
+        else {
+            System.out.println("Строка не является IP адресом");
+        }
+
+
+
     }
+    public static boolean validate( String ip){
+        Pattern pattern = Pattern.compile(IPADDRESS_PATTERN);
+        Matcher matcher = pattern.matcher(ip);
+        return matcher.matches();
+    }
+
 }
